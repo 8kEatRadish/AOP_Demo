@@ -1,11 +1,15 @@
 package com.shawn.krouter
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import com.shawn.krouter.uitl.InjectClick
+import com.shawn.krouter.uitl.injectClicks
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,10 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        injectClicks()
+    }
+
+    @InjectClick([R.id.fab])
+    fun onClickFab() {
+        Log.d("suihw", "点击了fab")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
