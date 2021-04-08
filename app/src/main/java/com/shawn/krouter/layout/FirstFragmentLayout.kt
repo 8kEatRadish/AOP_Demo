@@ -1,6 +1,7 @@
 package com.shawn.krouter.layout
 
 import android.content.Context
+import android.view.ContextThemeWrapper
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.Button
 import android.widget.TextView
@@ -14,7 +15,7 @@ class FirstFragmentLayout(context: Context) : BaseViewGroup(context) {
         addView(this)
     }
 
-    val button = Button(context).apply {
+    val button = Button(ContextThemeWrapper(context,R.style.Widget_AppCompat_Button)).apply {
         text = resources.getString(R.string.next)
         layoutParams = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
         addView(this)
