@@ -34,7 +34,7 @@ abstract class BaseViewGroup(context: Context) : ViewGroup(context) {
                 parent.measuredWidth.toExactlyMeasureSpec()
             }
             ViewGroup.LayoutParams.WRAP_CONTENT -> {
-                ViewGroup.LayoutParams.WRAP_CONTENT.toAtMostMeasureSpec()
+                parent.measuredWidth.toAtMostMeasureSpec()
             }
             0 -> {
                 throw IllegalAccessException("Need special treatment for $this")
@@ -52,7 +52,7 @@ abstract class BaseViewGroup(context: Context) : ViewGroup(context) {
                 parent.measuredHeight.toExactlyMeasureSpec()
             }
             ViewGroup.LayoutParams.WRAP_CONTENT -> {
-                ViewGroup.LayoutParams.WRAP_CONTENT.toAtMostMeasureSpec()
+                parent.measuredHeight.toAtMostMeasureSpec()
             }
             0 -> {
                 throw IllegalAccessException("Need special treatment for $this")
