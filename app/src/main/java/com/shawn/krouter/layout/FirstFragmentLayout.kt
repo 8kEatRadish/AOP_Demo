@@ -7,6 +7,11 @@ import android.widget.Button
 import android.widget.TextView
 import com.shawn.krouter.R
 
+/**
+ * 文件： FirstFragmentLayout.kt
+ * 描述： 第一个fragment布局
+ * 作者： Suihongwei 2021/4/13
+ **/
 class FirstFragmentLayout(context: Context) : BaseViewGroup(context) {
 
     val text = TextView(context).apply {

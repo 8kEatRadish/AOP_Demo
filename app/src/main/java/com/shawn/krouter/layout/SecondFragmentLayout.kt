@@ -6,6 +6,11 @@ import android.widget.Button
 import android.widget.TextView
 import com.shawn.krouter.R
 
+/**
+ * 文件： SecondFragmentLayout.kt
+ * 描述： 第二个fragment布局
+ * 作者： Suihongwei 2021/4/13
+ **/
 class SecondFragmentLayout(context: Context) : BaseViewGroup(context) {
 
     val text = TextView(context).apply {
