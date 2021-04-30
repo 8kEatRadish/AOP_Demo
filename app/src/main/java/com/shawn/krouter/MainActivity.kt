@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.shawn.krouter.layout.SecondActivityLayout
+import com.shawn.krouter.uitl.HookActivityUtils
 import com.shawn.krouter.uitl.InjectClick
 import com.shawn.krouter.uitl.injectClicks
 
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        HookActivityUtils.getInstance().hooks(this)
+        HookActivityUtils.getInstance().hookHanlder()
 
         injectClicks()
     }
