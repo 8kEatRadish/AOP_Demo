@@ -7,9 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
-import com.shawn.krouter.layout.SecondActivityLayout
-import com.shawn.krouter.uitl.HookActivityUtils
 import com.shawn.krouter.uitl.InjectClick
 import com.shawn.krouter.uitl.injectClicks
 
@@ -19,17 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        HookActivityUtils.getInstance().hooks(this)
-        HookActivityUtils.getInstance().hookHanlder()
-
         injectClicks()
     }
 
     @InjectClick([R.id.fab])
     fun onClickFab(view: View) {
         Log.d("suihw", "点击了fab")
-        startActivity(Intent(this, SecondActivity::class.java))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
