@@ -1,0 +1,17 @@
+//use java library
+apply plugin: 'java-library'
+//groovy library
+//apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies{
+    // gradle sdk
+    compile gradleApi()
+    // groovy sdk
+    compile localGroovy()
+}
+
+repositories{
+    google()
+    mavenCentral()
+}

@@ -1,7 +1,11 @@
+import com.shawn.addLog.AddLogPlugin
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+
+apply plugin: AddLogPlugin
 
 android {
     compileSdkVersion 30
