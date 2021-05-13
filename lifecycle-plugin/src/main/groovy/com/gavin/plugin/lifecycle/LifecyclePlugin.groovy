@@ -79,11 +79,13 @@ class LifecyclePlugin extends Transform implements Plugin<Project> {
      * 处理文件目录下的class文件
      */
     static void handleDirectoryInput(DirectoryInput directoryInput, TransformOutputProvider outputProvider) {
+        println '----------- 处理文件目录下的class文件 <' + directoryInput.file.isDirectory() + '> -----------'
         //是否是目录
         if (directoryInput.file.isDirectory()) {
             //列出目录所有文件（包含子文件夹，子文件夹内文件）
             directoryInput.file.eachFileRecurse { File file ->
                 def name = file.name
+                println '----------- 检查文件 '+ name +'<' + checkClassFile(name) + '> -----------'
                 if (checkClassFile(name)) {
                     println '----------- deal with "class" file <' + name + '> -----------'
                     ClassReader classReader = new ClassReader(file.bytes)
@@ -109,6 +111,7 @@ class LifecyclePlugin extends Transform implements Plugin<Project> {
      * 处理Jar中的class文件
      */
     static void handleJarInputs(JarInput jarInput, TransformOutputProvider outputProvider) {
+        println '----------- 处理Jar中的class文件 <' + jarInput.file.getAbsolutePath().endsWith(".jar") + '> -----------'
         if (jarInput.file.getAbsolutePath().endsWith(".jar")) {
             //重名名输出文件,因为可能同名,会覆盖
             def jarName = jarInput.name
@@ -165,8 +168,7 @@ class LifecyclePlugin extends Transform implements Plugin<Project> {
     static boolean checkClassFile(String name) {
         //只处理需要的class文件
         return (name.endsWith(".class") && !name.startsWith("R\$")
-                && !"R.class".equals(name) && !"BuildConfig.class".equals(name)
-                && "android/support/v4/app/FragmentActivity.class".equals(name))
+                && "R.class" != name && "BuildConfig.class" != name)
     }
 
 }
