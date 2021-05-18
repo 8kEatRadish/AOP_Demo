@@ -1,3 +1,4 @@
+include ':add_log_for_method_plugin'
 include ':app'
 include ':lifecycle-plugin'
 rootProject.name = "kRouter"

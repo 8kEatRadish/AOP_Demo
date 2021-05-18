@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
-    id 'com.gavin.gradle'
     id 'kotlin-android'
+    id 'com.shawn.addlogformethodplugin'
 }
 
 android {
