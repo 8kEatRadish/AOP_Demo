@@ -4,7 +4,7 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
 
-class AddLogMethodVisitor(methodVisitor: MethodVisitor) :
+class AddLogInitMethodVisitor(methodVisitor: MethodVisitor) :
     MethodVisitor(Opcodes.ASM7, methodVisitor) {
     override fun visitCode() {
         super.visitCode()
@@ -27,22 +27,18 @@ class AddLogMethodVisitor(methodVisitor: MethodVisitor) :
             "(Ljava/lang/String;)Ljava/lang/StringBuilder;",
             false
         )
-        mv.visitTypeInsn(Opcodes.NEW, "java/lang/Exception")
-        mv.visitInsn(Opcodes.DUP)
-        mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Exception", "<init>", "()V", false)
+        mv.visitVarInsn(Opcodes.ALOAD, 0)
         mv.visitMethodInsn(
             Opcodes.INVOKEVIRTUAL,
-            "java/lang/Exception",
-            "getStackTrace",
-            "()[Ljava/lang/StackTraceElement;",
+            "java/lang/Object",
+            "getClass",
+            "()Ljava/lang/Class;",
             false
         )
-        mv.visitInsn(Opcodes.ICONST_0)
-        mv.visitInsn(Opcodes.AALOAD)
         mv.visitMethodInsn(
             Opcodes.INVOKEVIRTUAL,
-            "java/lang/StackTraceElement",
-            "getMethodName",
+            "java/lang/Class",
+            "getSimpleName",
             "()Ljava/lang/String;",
             false
         )

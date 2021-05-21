@@ -15,8 +15,11 @@ import java.io.FileOutputStream
 
 class AddLogForMethodPlugin : Transform(), Plugin<Project> {
 
+    private val CLASS_NAMES = "classNames"
+
     override fun apply(target: Project) {
         println("begin addLogForMethodPlugin")
+        target.extensions.create(CLASS_NAMES,ClassNameExtension::class.java)
         val appExtension = target.extensions.getByType(AppExtension::class.java)
         appExtension.registerTransform(this)
         println("end addLogForMethodPlugin")

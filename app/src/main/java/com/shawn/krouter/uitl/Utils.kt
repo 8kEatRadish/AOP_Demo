@@ -17,8 +17,8 @@ fun Activity.injectClicks() {
         it.isAnnotationPresent(InjectClick::class.java)
     }.forEach flag@{
         it.isAccessible = true
-        if (it.parameterTypes.isEmpty() || it.parameterTypes[0] != View::class.java){
-            Log.e("suihw","${it.name} : method parameter error");
+        if (it.parameterTypes.isEmpty() || it.parameterTypes[0] != View::class.java) {
+            Log.e("suihw", "${it.name} : method parameter error");
             return@flag
         }
         it.getAnnotation(InjectClick::class.java).ids.forEach { id ->
@@ -26,12 +26,16 @@ fun Activity.injectClicks() {
                 val clickProxy = Proxy.newProxyInstance(
                     javaClass.classLoader, arrayOf(View.OnClickListener::class.java)
                 ) { _, _, _ ->
-                    Log.d("suihw","执行方法前插入")
-                    it.invoke(this@injectClicks,this)
-                    Log.d("suihw","执行方法后插入")
+                    Log.d("suihw", "执行方法前插入")
+                    it.invoke(this@injectClicks, this)
+                    Log.d("suihw", "执行方法后插入")
                 } as View.OnClickListener
                 setOnClickListener(clickProxy)
             }
         }
     }
+}
+
+fun MyLogD(tag: String, message: String) {
+    Log.d(tag, message)
 }

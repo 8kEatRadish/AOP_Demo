@@ -30,8 +30,12 @@ class AddLogClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM7
         val methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions)
         println("method = $name")
 
-        if (name == "com/shawn/krouter/MainActivity"){
-            return AddLogMethodVisitor(methodVisitor)
+        if (className.equals("com/shawn/krouter/MainActivity") && name != "<init>") {
+            return if (name == "onCreate") {
+                AddLogInitMethodVisitor(methodVisitor)
+            } else {
+                AddLogMethodVisitor(methodVisitor)
+            }
         }
 
         return methodVisitor
