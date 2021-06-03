@@ -15,11 +15,8 @@ import java.io.FileOutputStream
 
 class AddLogForMethodPlugin : Transform(), Plugin<Project> {
 
-    private val CLASS_NAMES = "classNames"
-
     override fun apply(target: Project) {
         println("begin addLogForMethodPlugin")
-        target.extensions.create(CLASS_NAMES,ClassNameExtension::class.java)
         val appExtension = target.extensions.getByType(AppExtension::class.java)
         appExtension.registerTransform(this)
         println("end addLogForMethodPlugin")
@@ -58,7 +55,7 @@ class AddLogForMethodPlugin : Transform(), Plugin<Project> {
                             val cr = ClassReader(file.readBytes())
                             val cw = ClassWriter(cr, ClassWriter.COMPUTE_MAXS)
                             val visitor = AddLogClassVisitor(cw)
-                            cr.accept(visitor, ClassReader.EXPAND_FRAMES)
+                            cr.accept(visitor, ClassReader.SKIP_FRAMES)
 
                             val byte = cw.toByteArray();
                             val fos = FileOutputStream(classPath)
